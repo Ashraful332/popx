@@ -1,25 +1,11 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+
+@font-face{
+  font-family: 'Rubik';
+  src: url('../assets/font/Rubik-Regular.ttf') format('truetype'); 
 }
 
-:root {
-  font-family: var(--font-inter), sans-serif; 
+body{
+  font-family: "Rubik";
 }
-
-body {
-  font-family: var(--font-inter), sans-serif;
-}
-
-.font-inter {
-  font-family: var(--font-inter), sans-serif;
-}
-
-/* roboto font */
-/* @font-face {
-  font-family: 'Roboto';
-  src: url('../assets/font/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-} */
