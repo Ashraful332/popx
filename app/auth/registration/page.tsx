@@ -4,20 +4,68 @@ import TextField from '@mui/material/TextField';
 import * as motion from "motion/react-client";
 import toast from 'react-hot-toast';
 import Radio from '@mui/material/Radio';
+import { useRouter } from "next/navigation";
 
 
 export default function Registration(){
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState('No');
 
+  // Starting the server for quick response
+  React.useEffect(() => {
+    fetch("http://localhost:5022/all-review")
+    .then((res) => res.json())
+    .then((data) => {
+        setLoading(true);
+        console.log(loading);
+    })
+    .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+    });
+  }, []);
+
+  // declare the is Agency
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+
   // handel registration
   const handelRegistration = (event:any):any => {
     event.preventDefault();
+
+    const name:string = event.target.name.value;
+    const number:number = event.target.number.value;
     const email:any = event.target.email.value;
     const password:any = event.target.password.value;
-    toast(email);
+    const company:any = event.target.company.value;
+    let Agency:string = selectedValue;
+    
+    const UserData = {name,number,email,password,company,Agency};
+    console.log(UserData);
+    console.log(` this is ------------${selectedValue}`);
+    
+
+    // send data to the server
+    fetch('http://localhost:5022/registration-p', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(UserData),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        toast.success("Review added successfully!");
+        router.push("/auth/login");
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        toast.error("Error adding review");
+    });
+
   }
   return(
     <div className="flex flex-col items-center justify-center bg-[#cec0c0] h-screen" >
@@ -34,18 +82,23 @@ export default function Registration(){
           <div className='flex flex-col  gap-9'>
             <TextField label="Full Name*" placeholder='Enter name' name='name' color="info" focused 
             className='w-[335px] h-[40px] '
+            required
             />
             <TextField label="Phone number*" placeholder='Enter phon number' name='number' color="info" focused 
             className='w-[335px] h-[40px] '
+            required
             />
             <TextField label="Email address*" placeholder='Enter email address' name='email' color="info" focused 
             className='w-[335px] h-[40px] '
+            required
             />
             <TextField label="Password*" placeholder='Enter Password' name='password' color="info" focused 
             className='w-[335px] h-[40px] '
+            required
             />
             <TextField label="Company name#" placeholder='Enter your company name' name='company' color="info" focused 
             className='w-[335px] h-[40px] '
+            required
             />
             <div>
               <p className='text-[16px] '>Are you an Agency?<samp className='text-green-600'>*</samp></p>
@@ -78,7 +131,8 @@ export default function Registration(){
             Create Account
           </motion.button>
          </form>
-        </div>
+        </div> 
+        {/* <p className='ml-5 '>the Server is {loading ? "connect" : "not connect"}</p> */}
       </div>
     </div>
   )

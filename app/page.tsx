@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 export default function Home(){
   const router = useRouter();
 
+
   // for going the Login page
   const handelLogin = () => {
     router.push("/auth/login");

@@ -2,13 +2,31 @@
 import TextField from '@mui/material/TextField';
 import * as motion from "motion/react-client";
 import toast from 'react-hot-toast';
+import { useRouter } from "next/navigation";
+
 
 export default function Login(){
-  const handelLogin = (event:any):any => {
+  const router = useRouter();
+
+  const handelLogin = async(event:any) => {
     event.preventDefault();
-    const email:any = event.target.email.value;
-    const password:any = event.target.password.value;
-    toast(email);
+    const email:string = event.target.email.value;
+    const password:string = event.target.password.value;
+    console.log({email,password});
+    
+
+    try {
+      const response = await fetch('http://localhost:5022/login-p', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+      toast.success("Login is susses full")
+      router.push("/profile");
+  } catch (error) {
+      toast.error("Do you have any account")
+  }
   }
   return(
     <div className="flex flex-col items-center justify-center bg-[#cec0c0] h-screen" >

@@ -1,20 +1,5 @@
-First work => 
-*making navbar
-@ click a officeal photo of my self
-*mack a hero section ther are about me 
-*add skils
-# mack mobile responcive desing
-#add animetion and buttiful transition
-*mak a navbar
-@mack a buttiful "Logo"
-*mack a mesig section for derickt masseg to me
-* add project section
-*add education
-*add exprience
+home
+login
+registration
+profile
 
-
-Last work => 
-*make resume page buttiful
-* making some blog
-*add admin login 
-*mack seo <----------------> 
