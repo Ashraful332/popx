@@ -19,7 +19,7 @@ export default function Login(){
     dispatch(setEmail(email));
 
     try {
-      const response = await fetch('http://localhost:5022/login-p', {
+      const response = await fetch('https://chill-gamer-server-jzl0.onrender.com/login-p', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

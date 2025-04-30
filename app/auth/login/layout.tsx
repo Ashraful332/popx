@@ -13,11 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head />
-      <body >
-         {children}
-      </body>
-    </html>
+    <div style={{fontFamily:"Rubik"}}>
+      {children}
+    </div>
   );
 }

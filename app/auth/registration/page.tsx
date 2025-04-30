@@ -14,7 +14,7 @@ export default function Registration(){
 
   // Starting the server for quick response
   React.useEffect(() => {
-    fetch("http://localhost:5022/all-review")
+    fetch("https://chill-gamer-server-jzl0.onrender.com/all-review")
     .then((res) => res.json())
     .then((data) => {
         setLoading(true);
@@ -47,7 +47,7 @@ export default function Registration(){
     console.log(` this is ------------${selectedValue}`);
     
     // send data to the server
-    fetch('http://localhost:5022/registration-p', {
+    fetch('https://chill-gamer-server-jzl0.onrender.com/registration-p', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

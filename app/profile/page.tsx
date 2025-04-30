@@ -11,6 +11,7 @@ import { RootState } from "@/redux/store";
 export default function Profile(){
   const email = useSelector((state: RootState) => state.user.email);
   console.log(email);
+  const router = useRouter();
   // user data
   type User = {
     name: string;
@@ -18,10 +19,16 @@ export default function Profile(){
   };
   const [userData, setUserData] = React.useState<User[]>([]);
 
+  React.useEffect(() => {
+    if (!email) {
+      router.push("/auth/login");
+    }
+  }, [email, router]);
+
   // Fetch User data
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5022/user-data-popx', {
+      const response = await fetch('https://chill-gamer-server-jzl0.onrender.com/user-data-popx', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
