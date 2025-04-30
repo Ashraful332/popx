@@ -1,4 +1,4 @@
-# 🚀 PopX - Fullstack Project Management with Auth
+# 🚀 PopX
 
 PopX is a complete authentication project where users can register, log in, and create and manage their own projects
 
