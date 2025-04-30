@@ -1,33 +1,59 @@
 "use client";
+import * as React from 'react';
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Images from "@/assets/image/1595710704361.jpeg"
+import icon from "@/assets/image/camera.png"
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function Profile(){
-  const router = useRouter();
+  const email = useSelector((state: RootState) => state.user.email);
+  console.log(email);
+  // user data
+  type User = {
+    name: string;
+    email: string;
+  };
+  const [userData, setUserData] = React.useState<User[]>([]);
 
-  // for going the Login page
-  const handelLogin = () => {
-    router.push("/auth/login");
-  };
-  // for going the registration page
-  const handelRegistration = () => {
-    router.push("/auth/registration");
-  };
+  // Fetch User data
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:5022/user-data-popx', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+      const data = await response.json();
+      setUserData(data)
+      console.log(`send data to mongodb ------------- the use profile ${data}`);
+    };
+  
+    fetchData();
+  }, []);
+
   return(
     <div className="flex flex-col items-center justify-center bg-[#cec0c0] h-screen" >
       <div className="border w-[375px] h-[812px] border-[#c1dcf7] bg-[#F7F8F9] rounded-2xl shadow-2xl flex flex-col ">
         <div className="">
          <nav className="flex flex-col text-[21px] pl-[15px] pt-[27px] pb-[19px] rounded-t-2xl bg-[#ffffff] shadow-md ">
-            <h2>Account Settings</h2>
+            <h2 className="hover:text-blue-600 cursor-pointer">
+              Account Settings
+            </h2>
          </nav>
          <main className="mt-[30px] ml-[20px] ">
             <div className="flex flex-row gap-5 ">
-               <Image src={Images} width={76} alt="profile" className="rounded-full" />
+              <div className="relative">
+                <Image src={Images} width={76} alt="profile" className="rounded-full" />
+                <button className="absolute top-12 left-12 cursor-pointer ">
+                  <Image src={icon} alt="camera" className="w-[25px] bg-[#110f0f] p-1 rounded-full  " />
+                </button>
+              </div>
                <div>
-                  <h1 className="text-[19px] font-semibold ">Marry Doe</h1>
-                  <p className="text-[14px] font-normal ">Marry@Gmail.Com</p>
+                  <h1 className="text-[19px] font-semibold ">{userData[0]?.name || "Marry Doe"}</h1>
+                  <p className="text-[14px] font-normal ">{userData[0]?.email || "Marry@Gmail.Com"} </p>
                </div>
             </div>
             <div>

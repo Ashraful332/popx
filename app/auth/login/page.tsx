@@ -3,23 +3,26 @@ import TextField from '@mui/material/TextField';
 import * as motion from "motion/react-client";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setEmail } from "@/redux/user/userSlice";
 
 
 export default function Login(){
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handelLogin = async(event:any) => {
     event.preventDefault();
     const email:string = event.target.email.value;
     const password:string = event.target.password.value;
     console.log({email,password});
-    
+    dispatch(setEmail(email));
 
     try {
       const response = await fetch('http://localhost:5022/login-p', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
       });
       const data = await response.json();
       toast.success("Login is susses full")

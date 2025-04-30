@@ -46,7 +46,6 @@ export default function Registration(){
     console.log(UserData);
     console.log(` this is ------------${selectedValue}`);
     
-
     // send data to the server
     fetch('http://localhost:5022/registration-p', {
       method: 'POST',
