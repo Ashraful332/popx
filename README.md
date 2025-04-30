@@ -1,52 +1,45 @@
-# Ashraful's Developer Portfolio 🌐🚀
+# 🚀 PopX - Fullstack Project Management with Auth
 
-Hi, I'm **Ashraful**, a 17-year-old passionate **React.js Developer**.  
-This is my personal portfolio website built using modern frontend technologies to showcase my projects, skills, and passion for web development.
+PopX is a complete authentication project where users can register, log in, and create and manage their own projects
 
-🔗 **Live Website:** [ashraful-pathan.web.app](https://ashraful-pathan.vercel.app/)  
-📁 **GitHub Repo:** [github.com/AshrafulPatHan/Ashraful](https://github.com/AshrafulPatHan/Ashraful.git)
+## 🧰 Tech Stack
 
----
+**Frontend:**
+- Next.js
+- React.js
+- Redux
+- Material UI
+- TypeScript
 
-## ✨ Features
+**Backend:**
+- Express.js
+- Node.js
+- MongoDB
 
-- Sleek, responsive and accessible UI
-- Smooth animations with **Framer Motion** and **GSAP**
-- Interactive and reusable components using **Radix UI**
-- Toast notifications using **react-hot-toast**
-- State management via **Redux Toolkit**
-- Fully typed with **TypeScript**
+## 🔐 Features
 
----
+- ✅ User Registration & Login (with JWT)
+- 📁 Create, Edit & Delete your own projects
+- 🎨 Modern UI using Material UI
+- ⚛️ State Management with Redux
+- 🌐 Fully Responsive
+- 💾 MongoDB Database Integration
 
-## 🛠️ Tech Stack
+## 🌐 Live Demo
 
-| Category        | Tools Used                                 |
-|-----------------|---------------------------------------------|
-| Framework       | [Next.js](https://nextjs.org/)             |
-| UI Library      | [React.js](https://reactjs.org/)           |
-| Language        | TypeScript                                 |
-| UI Components   | Radix UI, Tailwind CSS                     |
-| Animations      | Framer Motion, GSAP                        |
-| State Management| Redux Toolkit                              |
-| Notifications   | React Hot Toast                            |
-| Deployment      | vercel Hosting                           |
+Frontend (Vercel): [https://popx-ashraful.vercel.app](https://popx-ashraful.vercel.app/)  
+Backend (Render): [https://chill-gamer-server-jzl0.onrender.com](https://chill-gamer-server-jzl0.onrender.com)
 
----
+> ⚠️ Make sure the server is awake before trying out features.
 
-## 🚀 Getting Started
+## 🛠️ Getting Started Locally
 
-To run this project locally:
+### 📦 Clone the Repositories
+
+#### Frontend
 
 ```bash
-# Clone the repo
-git clone https://github.com/AshrafulPatHan/Ashraful.git
-
-# Navigate to the project directory
-cd Ashraful
-
-# Install dependencies
+git clone https://github.com/Ashraful332/popx.git
+cd popx
 npm install
-
-# Run the development server
 npm run dev
